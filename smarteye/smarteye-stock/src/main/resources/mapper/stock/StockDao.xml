@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yan.smarteye.stock.dao.StockDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yan.smarteye.stock.entity.StockEntity" id="stockMap">
+        <result property="stockId" column="stock_id"/>
+        <result property="stockName" column="stock_name"/>
+        <result property="stockDescription" column="stock_description"/>
+        <result property="stockImage" column="stock_image"/>
+        <result property="wlId" column="wl_id"/>
+        <result property="supplierId" column="supplier_id"/>
+        <result property="qualityPeriod" column="quality_period"/>
+        <result property="weight" column="weight"/>
+        <result property="publishStatus" column="publish_status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+<!--    //今天新增入库单数量-->
+    <select id="queryTodaybill" resultType="Integer">
+        select count(*) from gms_stock where to_days(create_time) = to_days(now())
+    </select>
+    <!--    //待上架的入库单数量-->
+    <select id="queryTodobill" resultType="Integer">
+        select count(*) from gms_stock where publish_status = 0
+    </select>
+
+</mapper>

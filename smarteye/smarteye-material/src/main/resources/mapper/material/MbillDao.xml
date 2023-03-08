@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yan.smarteye.material.dao.MbillDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yan.smarteye.material.entity.MbillEntity" id="mbillMap">
+        <result property="mbillId" column="mbill_id"/>
+        <result property="mbillName" column="mbill_name"/>
+        <result property="mbillDescription" column="mbill_description"/>
+        <result property="wlId" column="wl_id"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+<!--    /**-->
+<!--    * 查询今天新增物料申请单数量-->
+<!--    */-->
+    <select id="queryTodayMbill" resultType="Integer">
+        SELECT COUNT(*) FROM mms_mbill WHERE TO_DAYS(create_time) = TO_DAYS(NOW())
+    </select>
+<!--    /**-->
+<!--    * 待处理的物料申请单数量-->
+<!--    */-->
+    <select id="queryTodoMbill" resultType="Integer">
+        SELECT COUNT(*) FROM mms_mbill WHERE status = 0
+    </select>
+<!--    /**-->
+<!--    * 查询近一个月物料申请单的数量趋势，以天为分组-->
+<!--    */-->
+    <select id="queryMouthMbill" resultType="com.yan.smarteye.material.vo.MouthMbillRespVo">
+        SELECT
+            DATE_FORMAT(create_time, '%Y%m%d') days,
+            COUNT(mbill_id) `count`
+        FROM
+            mms_mbill
+        where to_days(now())-to_days(create_time)&lt;=30
+        GROUP BY
+            days;
+    </select>
+<!--    //查询近一个月物料申请单来自的分库的分布（饼图）-->
+    <select id="queryMouthMbillbingtu" resultType="com.yan.smarteye.material.vo.MouthMbillbingtuVo">
+        SELECT
+            COUNT(*) `value`,w.name `name`
+        FROM
+            mms_mbill m JOIN mms_ware_location w ON m.wl_id = w.wl_id
+        GROUP BY
+            m.wl_id;
+    </select>
+</mapper>

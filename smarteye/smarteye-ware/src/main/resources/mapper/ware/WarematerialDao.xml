@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yan.smarteye.ware.dao.WarematerialDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yan.smarteye.ware.entity.WarematerialEntity" id="warematerialMap">
+        <result property="warematerialId" column="warematerial_id"/>
+        <result property="valueSelect" column="value_select"/>
+        <result property="materialTypeName" column="material_type_name"/>
+        <result property="wlId" column="wl_id"/>
+        <result property="shelfName" column="shelf_name"/>
+        <result property="realCount" column="real_count"/>
+        <result property="warnCount" column="warn_count"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="levelNumb" column="level_numb"/>
+        <result property="wlpId" column="wlp_id"/>
+        <result property="wlppId" column="wlpp_id"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: smarteye-gateway
+#  cloud:
+#    nacos:
+#      config:
+#        server-addr: localhost:8848   #配置中心地址
+#        file-extension: yaml          #指定yaml格式的配置
+#        group: dev               #指定group,默认是DEFAULT_GROUP
+#        namespace: 8c9fd62c-0349-4501-b59d-f6032a377c23 #指定namespace
+
+# nacos配置中心dataID命名规则
+# ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+# 如nacos-config-client-dev.yaml

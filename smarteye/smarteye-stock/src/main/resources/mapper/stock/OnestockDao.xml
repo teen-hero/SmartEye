@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yan.smarteye.stock.dao.OnestockDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yan.smarteye.stock.entity.OnestockEntity" id="onestockMap">
+        <result property="onestockId" column="onestock_id"/>
+        <result property="stockId" column="stock_id"/>
+        <result property="onestockDescription" column="onestock_description"/>
+        <result property="onestockImage" column="onestock_image"/>
+        <result property="wlId" column="wl_id"/>
+        <result property="shelfId" column="shelf_id"/>
+        <result property="supplierId" column="supplier_id"/>
+        <result property="qualityPeriod" column="quality_period"/>
+        <result property="onestockCount" column="onestock_count"/>
+        <result property="weight" column="weight"/>
+        <result property="publishStatus" column="publish_status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+<!--    mp的动态sql-->
+    <select id="queryPageByCondition" resultType="com.yan.smarteye.stock.entity.OnestockEntity">
+        select * from gms_onestock where 1=1
+        <if test="key != null">
+            and (onestock_id = #{key} or value_select = #{key})
+        </if>
+        <if test="wlId!=null">
+            and wl_id = #{wlId}
+        </if>
+        <if test="supplierId!=null">
+            and supplier_id = #{supplierId}
+        </if>
+        <if test="min!=null">
+            and quality_period >= #{min} + datediff(now(),create_time)
+        </if>
+        <if test="max!=null">
+            and quality_period &lt;= #{max} + datediff(now(),create_time)
+        </if>
+        <if test="page!=null">
+            limit ${(page-1) * size},#{size}
+        </if>
+    </select>
+<!--    查询分页总记录数-->
+    <select id="queryConditiontoatalCount" resultType="int">
+        select count(*) from gms_onestock where 1=1
+        <if test="key != null">
+            and (onestock_id = #{key} or value_select = #{key})
+        </if>
+        <if test="wlId!=null">
+            and wl_id = #{wlId}
+        </if>
+        <if test="supplierId!=null">
+            and supplier_id = #{supplierId}
+        </if>
+        <if test="min!=null">
+            and quality_period >= #{min} + datediff(now(),create_time)
+        </if>
+        <if test="max!=null">
+            and quality_period &lt;= #{max} + datediff(now(),create_time)
+        </if>
+    </select>
+
+</mapper>

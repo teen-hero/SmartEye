@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yan.smarteye.stock.dao.ShelfDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yan.smarteye.stock.entity.ShelfEntity" id="shelfMap">
+        <result property="shelfId" column="shelf_id"/>
+        <result property="shelfName" column="shelf_name"/>
+        <result property="sort" column="sort"/>
+        <result property="descript" column="descript"/>
+        <result property="icon" column="icon"/>
+        <result property="wlId" column="wl_id"/>
+    </resultMap>
+
+
+    <select id="queryUpshelfInfo" resultType="com.yan.smarteye.stock.vo.UpShelfInfoResp">
+        SELECT COUNT(1) `count`,s.shelf_name shelfName FROM  gms_shelf s
+                                                       JOIN gms_onestock o
+                                                            ON s.shelf_name = o.shelf_name
+        WHERE s.shelf_name IN (
+            SELECT shelf_name FROM gms_shelf WHERE wl_id = #{wlId}
+        )
+        GROUP BY s.shelf_name
+    </select>
+    <select id="queryUpshelfInfodetial" resultType="com.yan.smarteye.stock.vo.UpShelfInfoVo">
+        SELECT o.shelf_name shelfName,o.quality_period qualityPeriod,
+               o.onestock_count onestockCount,o.value_select valueSelect,
+               o.update_time updateTime,o.stock_id stockId FROM  gms_shelf s
+                                                                                                                JOIN gms_onestock o
+                                                                                                                     ON s.shelf_name = o.shelf_name
+        WHERE s.wl_id = #{wlId}  AND o.shelf_name = #{shelfName}
+    </select>
+</mapper>

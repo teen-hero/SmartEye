@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yan.smarteye.material.dao.MaterialTypeShelfRelationDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yan.smarteye.material.entity.MaterialTypeShelfRelationEntity" id="materialTypeShelfRelationMap">
+        <result property="id" column="id"/>
+        <result property="materialTypeId" column="material_type_id"/>
+        <result property="shelfId" column="shelf_id"/>
+        <result property="materialTypeSort" column="material_type_sort"/>
+    </resultMap>
+    <!--    根据materialTypeId，shelfId批量删除关联关系 -->
+    <!--  循环拼接sql条件-->
+    <delete id="deleteBatchRelation">
+        DELETE FROM `mms_material_type_shelf_relation` WHERE
+        <foreach collection="entities" item="item" separator=" OR ">
+            (material_type_id=#{item.materialTypeId} AND shelf_id=#{item.shelfId})
+        </foreach>
+    </delete>
+
+</mapper>

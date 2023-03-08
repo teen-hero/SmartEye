@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yan.smarteye.material.dao.MaterialValueDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yan.smarteye.material.entity.MaterialValueEntity" id="materialValueMap">
+        <result property="id" column="id"/>
+        <result property="materialId" column="material_id"/>
+        <result property="materialTypeId" column="material_type_id"/>
+        <result property="materialTypeName" column="material_type_name"/>
+        <result property="materialTypeValue" column="material_type_value"/>
+        <result property="count" column="count"/>
+        <result property="materialTypeSort" column="material_type_sort"/>
+        <result property="quickShow" column="quick_show"/>
+    </resultMap>
+
+
+</mapper>

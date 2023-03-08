@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yan.smarteye.material.dao.MbilldetailDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yan.smarteye.material.entity.MbilldetailEntity" id="mbilldetailMap">
+        <result property="mbilldetailId" column="mbilldetail_id"/>
+        <result property="materialId" column="material_id"/>
+        <result property="mbilldetailDescription" column="mbilldetail_description"/>
+        <result property="wlId" column="wl_id"/>
+        <result property="shelfName" column="shelf_name"/>
+        <result property="mbilldetailCount" column="mbilldetail_count"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="valueSelect" column="value_select"/>
+        <result property="materialTypeId" column="material_type_id"/>
+        <result property="wlpId" column="wlp_id"/>
+        <result property="wlppId" column="wlpp_id"/>
+    </resultMap>
+
+
+</mapper>

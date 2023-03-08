@@ -1,0 +1,27 @@
+server:
+  port: 7009
+spring:
+  application:
+    name: smarteye-third
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    alicloud:       #配置阿里云存储，服务端签名直传
+      access-key:
+      secret-key:
+      oss:
+        endpoint:
+      #配置阿里云短信服务（这是自定义属性配置）
+      sms:
+        accessKeyId:
+        accessKeySecret:
+  #redis配置
+  redis:
+    host:
+    port: 6379
+    password:
+    database: 0    #Redis数据库索引（默认为0）
+  #指定SpringSession用Redis存储实现
+  session:
+    store-type：redis

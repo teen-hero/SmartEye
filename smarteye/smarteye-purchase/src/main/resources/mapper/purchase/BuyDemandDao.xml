@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yan.smarteye.purchase.dao.BuyDemandDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yan.smarteye.purchase.entity.BuyDemandEntity" id="buyDemandMap">
+        <result property="buyDemandId" column="buy_demand_id"/>
+        <result property="buyListId" column="buy_list_id"/>
+        <result property="warestockId" column="warestock_id"/>
+        <result property="buyNum" column="buy_num"/>
+        <result property="status" column="status"/>
+        <result property="origin" column="origin"/>
+    </resultMap>
+
+
+</mapper>

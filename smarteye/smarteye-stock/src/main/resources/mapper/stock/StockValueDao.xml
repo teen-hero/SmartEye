@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yan.smarteye.stock.dao.StockValueDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yan.smarteye.stock.entity.StockValueEntity" id="stockValueMap">
+        <result property="id" column="id"/>
+        <result property="stockId" column="stock_id"/>
+        <result property="stockTypeId" column="stock_type_id"/>
+        <result property="stockTypeName" column="stock_type_name"/>
+        <result property="stockTypeValue" column="stock_type_value"/>
+        <result property="count" column="count"/>
+        <result property="stockTypeSort" column="stock_type_sort"/>
+        <result property="quickShow" column="quick_show"/>
+    </resultMap>
+
+
+</mapper>

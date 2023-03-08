@@ -1,0 +1,72 @@
+server:
+  port: 8002
+spring:
+  datasource:
+    username: root
+    password:
+    url: jdbc:mysql://localhost:3306/smarteye_gms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss  #格式化时间格式 ，调整返回的json格式
+
+  #redis配置
+  redis:
+    host:
+    port: 6379
+    password:
+    database: 0    #Redis数据库索引（默认为0）
+  #指定SpringSession用Redis存储实现
+  session:
+    store-type：redis
+  #spring cache 配置
+  cache:
+    #指定缓存类型为redis （自动配置会根据类型自动帮我们选择对应的（redis）缓存管理器）
+    type: redis
+    redis:
+      time-to-live: 3600000     # 过期时间
+      # key-prefix: CACHE_        # 如果指定了前缀，就使用指定的前缀，如果没有就默认使用缓存的名字作为前缀（前缀指@Cacheable的value属性）
+      use-key-prefix: true      # 是否使用写入redis前缀,false的话redis中key就只有@Cacheable的key属性
+      cache-null-values: true   # 是否允许缓存空值，解决缓存穿透问题（空值也给放到缓存，避免缓存穿透）
+
+  #消息队列
+  rabbitmq:
+    host:
+    virtual-host: /
+    listener:
+      simple:
+        # 手动确认接受消息
+        acknowledge-mode: manual
+    port: 5672
+    username:
+    password:
+
+# MapperScan
+# sql映射文件位置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto  #自增主键
+      logic-delete-value: 1  #配置逻辑删除
+      logic-delete-field: 0
+
+#调整日志等级，将需要的操作日志以debug模式输出
+logging:
+  level:
+    com.yan: debug   #可以指定要输出日志的包名和日志等级，该包下的操作会输出debug日志
+
+
+#配置自定义的线程池
+smarteye:
+  thread:
+    coreSize: 20
+    maxSize: 100
+    keepAliveTime: 10
+
+#feign超时时间
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 60000   #单位毫秒  1s =1000ms   60000 是一分钟
+        readTimeout: 60000

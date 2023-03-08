@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yan.smarteye.stock.dao.StockTypeShelfRelationDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.yan.smarteye.stock.entity.StockTypeShelfRelationEntity" id="stockTypeShelfRelationMap">
+        <result property="id" column="id"/>
+        <result property="stockTypeId" column="stock_type_id"/>
+        <result property="shelfId" column="shelf_id"/>
+        <result property="stockTypeSort" column="stock_type_sort"/>
+    </resultMap>
+    <!--    根据stockTypeId，shelfId批量删除关联关系 -->
+    <!--  循环拼接sql条件-->
+    <delete id="deleteBatchRelation">
+        DELETE FROM `gms_stock_type_shelf_relation` WHERE
+        <foreach collection="entities" item="item" separator=" OR ">
+            (stock_type_id=#{item.stockTypeId} AND shelf_id=#{item.shelfId})
+        </foreach>
+    </delete>
+
+</mapper>
