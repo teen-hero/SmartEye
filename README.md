@@ -713,3 +713,6 @@ SamrtEye库存模型整体如下
 
 ​		特别注意的是，SamrtEye PC后台所展示的功能大部分均可同步至手机端工作台，用户可以灵活选择使用手机端进行操作。
 
+特别说明：本项目PC端的前端使用过人人开源的前端设计  👉   https://gitee.com/renrenio/renren-fast-vue
+         手机端使用的是Ruoyi-Uniapp手机端的前端设计  👉  https://gitee.com/big-hedgehog/ruoyi-uniapp
+         本仓库没有上传前端页面，前端可参考本仓库曾采用的开源设计        
