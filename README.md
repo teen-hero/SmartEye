@@ -97,7 +97,6 @@
 - 持久层框架：MyBatis Plus
 - 服务注册与发现: Nacos
 - 负载均衡：Ngnix、Ribbon
-- 熔断组件：Sentinel
 - 网关组件：Spring Cloud Gateway
 - 分布式事务：Seata
 - Spring Cache、Spring Session、Redission...
